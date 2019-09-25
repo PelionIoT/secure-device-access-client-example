@@ -160,7 +160,15 @@ sda_status_e application_callback(sda_operation_ctx_h handle, void *callback_par
         goto out;
     }
 
-    tr_info("Function callback is %.*s", func_callback_name_size, func_callback_name);
+    tr_info("Function callback is %.*s", (int)func_callback_name_size, func_callback_name);
+
+    // Check permission
+    sda_status = is_operation_permitted(handle, func_callback_name, func_callback_name_size);
+    if (sda_status != SDA_STATUS_SUCCESS) {
+        tr_error("%.*s operation not permitted (%u)", (int)func_callback_name_size, func_callback_name, sda_status);
+        sda_status_for_response = sda_status;
+        goto out;
+    }
 
     /***
     * The following commands represents two demos as listed below:
@@ -187,14 +195,6 @@ sda_status_e application_callback(sda_operation_ctx_h handle, void *callback_par
 
         int64_t temperature = 0;
 
-        // Check permission
-        sda_status = is_operation_permitted(handle, func_callback_name, func_callback_name_size);
-        if (sda_status != SDA_STATUS_SUCCESS) {
-            tr_error("demo_callback_configure() operation not permitted (%u)", sda_status);
-            sda_status_for_response = sda_status;
-            goto out;
-        }
-
         // Get the temperature to display
         sda_status = sda_func_call_numeric_parameter_get(handle, 0, &temperature);
         if (sda_status != SDA_STATUS_SUCCESS) {
@@ -220,14 +220,6 @@ sda_status_e application_callback(sda_operation_ctx_h handle, void *callback_par
         * This function has no inbound parameters.
         */
 
-        // Check permission
-        sda_status = is_operation_permitted(handle, func_callback_name, func_callback_name_size);
-        if (sda_status != SDA_STATUS_SUCCESS) {
-            tr_error("demo_callback_read_data() operation not permitted (%u)", sda_status);
-            sda_status_for_response = sda_status;
-            goto out;
-        }
-
         // Dispatch function callback
         success = demo_callback_read_data();
         if (!success) {
@@ -245,14 +237,6 @@ sda_status_e application_callback(sda_operation_ctx_h handle, void *callback_par
         * This function has no inbound parameters.
         */
 
-        // Check permission
-        sda_status = is_operation_permitted(handle, func_callback_name, func_callback_name_size);
-        if (sda_status != SDA_STATUS_SUCCESS) {
-            tr_error("demo_callback_update() operation not permitted (%u)", sda_status);
-            sda_status_for_response = sda_status;
-            goto out;
-        }
-
         // Dispatch function callback
         demo_callback_update();
 
@@ -264,14 +248,6 @@ sda_status_e application_callback(sda_operation_ctx_h handle, void *callback_par
         * and displays it on LCD if the provided scope is in form of demo_callback_read_temperature.
         * This function has no inbound parameters.
         */
-
-        // Check permission
-        sda_status = is_operation_permitted(handle, func_callback_name, func_callback_name_size);
-        if (sda_status != SDA_STATUS_SUCCESS) {
-            tr_error("demo_callback_diagnostics() operation not permitted (%u)", sda_status);
-            sda_status_for_response = sda_status;
-            goto out;
-        }
 
         // Dispatch function callback
         success = demo_callback_diagnostics();
@@ -289,14 +265,6 @@ sda_status_e application_callback(sda_operation_ctx_h handle, void *callback_par
         * The provided scope must be in form of demo_callback_update_temperature.
         * It gets the temperature value to set as a parameter
         */
-
-        // Check permission
-        sda_status = is_operation_permitted(handle, func_callback_name, func_callback_name_size);
-        if (sda_status != SDA_STATUS_SUCCESS) {
-            tr_error("demo_callback_restart() operation not permitted (%u)", sda_status);
-            sda_status_for_response = sda_status;
-            goto out;
-        }
 
         // Dispatch function callback
         demo_callback_restart();
@@ -316,7 +284,7 @@ sda_status_e application_callback(sda_operation_ctx_h handle, void *callback_par
     }
 
     // flow succeeded
-    tr_info("(%.*s) execution succeeded", func_callback_name_size, func_callback_name);
+    tr_info("(%.*s) execution succeeded", (int)func_callback_name_size, func_callback_name);
 out: 
 
     if ((sda_status_for_response != SDA_STATUS_SUCCESS) && (sda_status_for_response != SDA_STATUS_NO_MORE_SCOPES)) {
