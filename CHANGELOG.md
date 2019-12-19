@@ -1,6 +1,10 @@
 # Changelog for Secure Device Access Client example application
 
-## Release 4.1.0 
+## Release 4.2.0 (18.12.2019)
+
+* [Mbed OS] Updated to Mbed OS 5.15.0.
+
+## Release 4.1.0 (28.11.2019) 
 
 * [Mbed OS] Updated to Mbed OS 5.14.2.
 
