@@ -1,5 +1,9 @@
 # Changelog for Secure Device Access Client example application
 
+## Release 4.4.0 (20.04.2020)
+
+* Updated to Mbed OS 5.15.1.
+
 ## Release 4.3.0 (06.02.2020)
 
 * Platform-application-specific code moved from `mbed-cloud-client-common-platform` folder to `source\platform` folder.
