@@ -595,6 +595,8 @@ out:
 */
 int main(int argc, char * argv[])
 {
+    (void) argc;
+    (void) argv;
     bool success = false;
 
     // careful, mbed-trace initialization may happen at this point if and only if we 

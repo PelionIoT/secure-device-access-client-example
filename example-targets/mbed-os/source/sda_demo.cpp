@@ -106,6 +106,7 @@ bool demo_callback_read_data(void)
 
 bool demo_callback_configure(int64_t temperature)
 {
+    (void) temperature;
     emulate_operation("configure", LED_CL_WHITE, 5);
     tr_error("Outside temperature: 28");
     return true;
