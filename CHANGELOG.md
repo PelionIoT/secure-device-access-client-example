@@ -1,5 +1,9 @@
 # Changelog for Secure Device Access Client example application
 
+## Release 4.6.0 (26.08.2020)
+
+* pal-platform: Updated Mbed TLS to 2.22.0 in `pal-platform`.
+
 ## Release 4.5.0 (04.06.2020)
 
 * No changes
