@@ -14,8 +14,6 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------
 
-#ifndef SDAE_INTERNAL_DEMO
-
 #include "sda_demo.h"
 #include "mbed.h"
 #include "PinNames.h"
@@ -129,5 +127,3 @@ bool demo_callback_diagnostics(void)
     emulate_operation("read", LED_CL_PINK, 5);
     return true;
 }
-
-#endif // SDAE_INTERNAL_DEMO
