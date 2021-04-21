@@ -1,7 +1,5 @@
 {
     "macros": [
-        "MBED_CLIENT_USER_CONFIG_FILE=\"mbed_cloud_client_user_config.h\"",
-        "MBED_CLOUD_CLIENT_USER_CONFIG_FILE=\"mbed_cloud_client_user_config.h\"",
         "MBED_CLOUD_CLIENT_ENABLE_SDA=1"
     ],
     "target_overrides": {
@@ -40,6 +38,11 @@
         },
         "main-stack-size"          : {
             "value"                : 8192
+        },
+        "user-config": {
+            "help"                 : "Defines which user configuration to use.",
+            "macro_name"           : "MBED_CLOUD_CLIENT_USER_CONFIG_FILE",
+            "value"                : "\"mbed_cloud_client_user_config.h\""
         },
         "mbedtls-user-config-file" : {
             "help"                 : "Mbetls user configuration file",

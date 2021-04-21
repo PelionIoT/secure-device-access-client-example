@@ -1,6 +1,11 @@
 # Changelog for Secure Device Access Client example application
 
-## Release 4.7.1 (28.01.2021)
+## Release 4.8.0 (21.04.2021)
+
+* Updated to Mbed OS 6.8.0.
+* Upgraded update client bootloaders are located in prebuilt-bl folder. Legacy bootloaders are located in tools folder.
+
+## Release 4.7.1 (18.01.2021)
 
 No changes.
 
